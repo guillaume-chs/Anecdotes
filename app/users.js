@@ -15,8 +15,6 @@ module.exports = function(server) {
         }
     });
 
-
-
     server.route({
         method: 'POST',
         path: '/users',
@@ -46,7 +44,6 @@ module.exports = function(server) {
             reply().code(201).header('Location', '/users/' + user.id);
         }
     });
-
     
     server.route({
         method: 'GET',
@@ -59,7 +56,64 @@ module.exports = function(server) {
             }
         },
         handler: (request, reply) => {
-            reply(users[request.params.id]);
+            const user = users.find(u => u.id == request.params.id);
+            if (!user) {
+                reply().code(404);
+            } else {
+               reply(user);
+            }
+        }
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/users/{id}',
+        config: {
+            validate: {
+                params: {
+                    id: Joi.string().required().min(1)
+                }
+            }
+        },
+        handler: (request, reply) => {
+            const userIndex = users.findIndex(u => u.id == request.params.id);
+            if (userIndex < 0) {
+                reply().code(404);
+            } else {
+                users.splice(userIndex, 1);
+                reply();
+            }
+        }
+    });
+
+    server.route({
+        method: 'PUT',
+        path: '/users/{id}',
+        config: {
+            validate: {
+                params: {
+                    id: Joi.string().required().min(1)
+                },
+                payload: {
+                    firstName: Joi.string().min(1),
+                    lastName: Joi.string().min(1),
+                    email: Joi.string().email(),
+                    birthday: Joi.number()
+                }
+            }
+        },
+        handler: (request, reply) => {
+            let user = users.find(u => u.id == request.params.id);
+            if (!user) {
+                reply().code(404);
+            } else {
+                let existing = user;
+                for (let prop in request.payload) {
+                    existing[prop] = request.payload[prop];
+                }
+                user = existing;
+                reply();
+            }
         }
     });
 };

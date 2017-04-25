@@ -17,41 +17,47 @@ server.connection({
 /****************************/
 /******* EXEMPLE ************/
 /****************************/
-server.route({
-    method: 'POST',
-    path: '/init',
-    handler: (request, reply) => {
-        ready = true;
-        reply('Initialized').code(201);
-    }
-});
-server.route({
-    method: 'POST',
-    path: '/led/{id}/actions/switch/{option}',
-    config: {
-        validate: {
-            params: {
-                id: Joi.number().min(0),
-                option: Joi.string().required().valid('on', 'off')
-            }
-        }
-    },
-    handler: (request, reply) => {
-        if (!ready) {
-            reply('Not initialized').code(405); // Not Allowed
+// server.route({
+//     method: 'POST',
+//     path: '/init',
+//     handler: (request, reply) => {
+//         ready = true;
+//         reply('Initialized').code(201);
+//     }
+// });
 
-        } else if (!arduino.ledExists(request.params.id)) {
-            reply('Not found').code(404); // Not Found
+// server.route({
+//     method: 'POST',
+//     path: '/led/{id}/actions/switch/{option}',
+//     config: {
+//         validate: {
+//             params: {
+//                 id: Joi.number().min(0),
+//                 option: Joi.string().required().valid('on', 'off')
+//             }
+//         }
+//     },
+//     handler: (request, reply) => {
+//         if (!ready) {
+//             reply('Not initialized').code(405); // Not Allowed
 
-        } else {
-            if ((on && status) || (off && !status)) {
-                reply('Already ' + request.params.option).code(304); // Not Modified
-            } else {
-                reply().code(204); // No Content
-            }
-        }
-    }
-})
+//         } else if (!arduino.ledExists(request.params.id)) {
+//             reply('Not found').code(404); // Not Found
+
+//         } else {
+//             if ((on && status) || (off && !status)) {
+//                 reply('Already ' + request.params.option).code(304); // Not Modified
+//             } else {
+//                 reply().code(204); // No Content
+//             }
+//         }
+//     }
+// });
+
+require('./app/users.js')(server);
+require('./app/anecdotes.js')(server);
+
+
 
 
 

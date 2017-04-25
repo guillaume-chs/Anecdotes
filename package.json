@@ -9,8 +9,7 @@
   },
   "keywords": [
     "hapi",
-    "nodejs",
-    "arduino"
+    "nodejs"
   ],
   "author": "Guillaume Chanson <guillaume.chns@gmail.com>",
   "license": "MIT",

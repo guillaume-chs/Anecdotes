@@ -8,8 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "hapi",
-    "nodejs"
+    "anecdotes", "stories",
+    "node", "nodejs",
+    "hapi", "hapijs",
+    "API", "REST"
   ],
   "author": "Guillaume Chanson <guillaume.chns@gmail.com>",
   "license": "MIT",

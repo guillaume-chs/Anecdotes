@@ -1,519 +1,588 @@
 {
-  "swagger" : "2.0",
-  "info" : {
-    "description" : "An API for keeping (serious and funny) stories about everyone in our class. We want to make something simple, original, and funny more than everything else.\n\n(Don't forget to take it for a spin by clicking on the **Try in Client** button next to each operation! All read operations are public and don't require authentication.)\n\n<!--<div>\n<img src='https://thecontactsapi.apispark.net/v1/img/cropped-contact-img.png' width='90%'>\n<div>-->\n\n<!-- ![](https://thecontactsapi.apispark.net/v1/img/cropped-contact-img.png) -->\n\n",
-    "version" : "0.1",
-    "title" : "Anecdotes API",
-    "termsOfService" : "",
-    "contact" : {
-      "name" : "Guillaume Chanson",
-      "url" : "https://github.com/guillaume-chs/Anecdotes",
-      "email" : "guillaume.chns@gmail.com"
+  "swagger": "2.0",
+  "info": {
+    "description": "An API for keeping (serious and funny) stories about everyone in our class. We want to make something simple, original, and funny more than everything else.\n\n(Don't forget to take it for a spin by clicking on the **Try in Client** button next to each operation! All read operations are public and don't require authentication.)\n\n<!--<div>\n<img src='https://thecontactsapi.apispark.net/v1/img/cropped-contact-img.png' width='90%'>\n<div>-->\n\n<!-- ![](https://thecontactsapi.apispark.net/v1/img/cropped-contact-img.png) -->\n\n",
+    "version": "0.1",
+    "title": "Anecdotes API",
+    "termsOfService": "",
+    "contact": {
+      "name": "Guillaume Chanson",
+      "url": "https://github.com/guillaume-chs/Anecdotes",
+      "email": "guillaume.chns@gmail.com"
     },
-    "license" : {
-      "name" : "MIT",
-      "url" : "https://github.com/guillaume-chs/Anecdotes/blob/master/LICENSE"
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/guillaume-chs/Anecdotes/blob/master/LICENSE"
     }
   },
-  "host" : "anecdotes.restlet.net",
-  "basePath" : "/beta",
-  "schemes" : [ "https" ],
-  "consumes" : [ "application/json" ],
-  "produces" : [ "application/json" ],
-  "security" : [ {
-    "HTTP_BASIC" : [ ]
-  } ],
-  "paths" : {
-    "/users/" : {
-      "get" : {
-        "tags" : [ "Users" ],
-        "summary" : "Get the list of Users",
-        "description" : "Loads a list of User",
-        "parameters" : [ {
-          "name" : "$size",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "description" : "Size of the page to retrieve.",
-          "x-example" : 10
-        }, {
-          "name" : "$page",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "description" : "Number of the page to retrieve.",
-          "x-example" : 1
-        }, {
-          "name" : "$sort",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "description" : "Order in which to retrieve the results. Multiple sort criteria can be passed.",
-          "x-example" : "birthday DESC"
-        }, {
-          "name" : "firstName",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "description" : "Allows to filter the collections of result by the value of field firstName",
-          "x-example" : "John"
-        }, {
-          "name" : "lastName",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "description" : "Allows to filter the collections of result by the value of field lastName",
-          "x-example" : "Doe"
-        }, {
-          "name" : "active",
-          "in" : "query",
-          "required" : false,
-          "type" : "boolean",
-          "description" : "Allows to filter the collections of result by the value of field active",
-          "x-example" : true
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/User"
+  "host": "anecdotes.restlet.net",
+  "basePath": "/beta",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [{
+    "HTTP_BASIC": []
+  }],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get the list of Users",
+        "description": "Loads a list of User",
+        "parameters": [{
+            "name": "$size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Size of the page to retrieve.",
+            "x-example": 10
+          },
+          {
+            "name": "$page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of the page to retrieve.",
+            "x-example": 1
+          },
+          {
+            "name": "$sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Order in which to retrieve the results. Multiple sort criteria can be passed.",
+            "x-example": "birthday DESC"
+          },
+          {
+            "name": "firstName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Allows to filter the collections of result by the value of field firstName",
+            "x-example": "John"
+          },
+          {
+            "name": "lastName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Allows to filter the collections of result by the value of field lastName",
+            "x-example": "Doe"
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "Allows to filter the collections of result by the value of field active",
+            "x-example": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
               },
-              "example" : "[{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}]"
+              "example": "[{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"john.smith@gmail.com\"\n  \"birthday\": 152755200000\n}]"
             },
-            "examples" : {
-              "application/json" : "[{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}]"
+            "examples": {
+              "application/json": "[{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"john.smith@gmail.com\"\n  \"birthday\": 152755200000\n}]"
             },
-            "headers" : {
-              "X-Page-Count" : {
-                "type" : "integer",
-                "x-example" : 1
+            "headers": {
+              "X-Page-Count": {
+                "type": "integer",
+                "x-example": 1
               },
-              "X-Page-Number" : {
-                "type" : "integer",
-                "x-example" : 1
+              "X-Page-Number": {
+                "type": "integer",
+                "x-example": 1
               },
-              "X-Page-Size" : {
-                "type" : "integer",
-                "x-example" : 25
+              "X-Page-Size": {
+                "type": "integer",
+                "x-example": 25
               },
-              "X-Total-Count" : {
-                "type" : "integer",
-                "x-example" : 2
+              "X-Total-Count": {
+                "type": "integer",
+                "x-example": 2
               }
             }
           },
-          "400" : {
-            "description" : "Status 400",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
+          "400": {
+            "description": "Status 400",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
       },
-      "post" : {
-        "tags" : [ "Users" ],
-        "summary" : "Create a User",
-        "description" : "Adds a User",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/User"
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a User",
+        "description": "Adds a User",
+        "consumes": [],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
           }
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "User has been created under given location.",
-            "headers" : {
-              "Location" : {
-                "type" : "string",
-                "description" : "Location of the created User",
-                "x-example" : "{server}/users/{id}"
+        }],
+        "responses": {
+          "201": {
+            "description": "User has been created under given location.",
+            "headers": {
+              "Location": {
+                "type": "string",
+                "description": "Location of the created User",
+                "x-example": "{server}/users/{id}"
               }
             }
+          },
+          "400": {
+            "description": "Request doesn't match the API Contract"
+          },
+          "401": {
+            "description": "You need to be authentified"
+          },
+          "403": {
+            "description": "User already exists"
+          },
+          "404": {
+            "description": "One of the id you request cannot be found. Please check your request body."
+          },
+          "500": {
+            "description": "Something happened"
           }
         }
       }
     },
-    "/users/{userid}" : {
-      "get" : {
-        "tags" : [ "Users" ],
-        "summary" : "Load an individual User",
-        "description" : "Loads a User",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/User"
+    "/users/{userid}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Load an individual User",
+        "description": "Loads a User",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "$ref": "#/definitions/User"
             },
-            "examples" : {
-              "application/json" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}"
+            "examples": {
+              "application/json": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}"
             }
           },
-          "400" : {
-            "description" : "Status 400",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
+          "400": {
+            "description": "Status 400",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
       },
-      "put" : {
-        "tags" : [ "Users" ],
-        "summary" : "Update a User",
-        "description" : "Stores a User",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/User"
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a User",
+        "description": "Stores a User",
+        "consumes": [],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/User"
+        }],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "$ref": "#/definitions/User"
             },
-            "examples" : {
-              "application/json" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}"
+            "examples": {
+              "application/json": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}"
             }
           }
         }
       },
-      "delete" : {
-        "tags" : [ "Users" ],
-        "summary" : "Delete a User",
-        "description" : "Deletes a User",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete a User",
+        "description": "Deletes a User",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Status 200"
           }
         }
       },
-      "parameters" : [ {
-        "name" : "userid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Identifier of the User",
-        "x-example" : "0e8dd830-ad98-11e6-bf2e-47644ada7c0f"
-      } ]
+      "parameters": [{
+        "name": "userid",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Identifier of the User",
+        "x-example": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f"
+      }]
     },
-    "/anecdotes/" : {
-      "get" : {
-        "tags" : [ "Anecdotes" ],
-        "summary" : "Get the list of Users",
-        "description" : "Loads a list of Anecdote.",
-        "parameters" : [ {
-          "name" : "$size",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "description" : "Size of the page to retrieve.",
-          "x-example" : 10
-        }, {
-          "name" : "$page",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "description" : "Number of the page to retrieve.",
-          "x-example" : 1
-        }, {
-          "name" : "$sort",
-          "in" : "query",
-          "required" : false,
-          "type" : "string",
-          "description" : "Order in which to retrieve the results. Multiple sort criteria can be passed.",
-          "x-example" : "birthday DESC"
-        }, {
-          "name" : "tags",
-          "in" : "query",
-          "required" : false,
-          "type" : "array",
-          "description" : "Allows to filter the collections of result by their tags",
-          "items" : {
-            "type" : "string"
+    "/anecdotes/": {
+      "get": {
+        "tags": [
+          "Anecdotes"
+        ],
+        "summary": "Get the list of Anecdotes",
+        "description": "Loads a list of Anecdote.",
+        "parameters": [{
+            "name": "$size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Size of the page to retrieve.",
+            "x-example": 10
           },
-          "x-example" : "funny"
-        }, {
-          "name" : "before",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "description" : "Allows to filter the collections of result by their happening datetime. Only returns anecdotes specified to have happened before given datetime (as unix timestamp (ms))",
-          "x-example" : 152755200000
-        }, {
-          "name" : "after",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "description" : "Allows to filter the collections of result by their happening datetime. Only returns anecdotes specified to have happened before given datetime (as unix timestamp (ms))",
-          "x-example" : 152755200000
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Anecdote"
-              },
-              "example" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+          {
+            "name": "$page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of the page to retrieve.",
+            "x-example": 1
+          },
+          {
+            "name": "$sort",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Order in which to retrieve the results. Multiple sort criteria can be passed.",
+            "x-example": "birthday DESC"
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "description": "Allows to filter the collections of result by their tags",
+            "items": {
+              "type": "string"
             },
-            "examples" : {
-              "application/json" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+            "x-example": "funny"
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Allows to filter the collections of result by their happening datetime. Only returns anecdotes specified to have happened before given datetime (as unix timestamp (ms))",
+            "x-example": 152755200000
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Allows to filter the collections of result by their happening datetime. Only returns anecdotes specified to have happened before given datetime (as unix timestamp (ms))",
+            "x-example": 152755200000
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Anecdote"
+              },
+              "example": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
             },
-            "headers" : {
-              "X-Page-Count" : {
-                "type" : "integer",
-                "x-example" : 1
+            "examples": {
+              "application/json": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+            },
+            "headers": {
+              "X-Page-Count": {
+                "type": "integer",
+                "x-example": 1
               },
-              "X-Page-Number" : {
-                "type" : "integer",
-                "x-example" : 1
+              "X-Page-Number": {
+                "type": "integer",
+                "x-example": 1
               },
-              "X-Page-Size" : {
-                "type" : "integer",
-                "x-example" : 25
+              "X-Page-Size": {
+                "type": "integer",
+                "x-example": 25
               },
-              "X-Total-Count" : {
-                "type" : "integer",
-                "x-example" : 2
+              "X-Total-Count": {
+                "type": "integer",
+                "x-example": 2
               }
             }
           },
-          "400" : {
-            "description" : "Status 400",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
+          "400": {
+            "description": "Status 400",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
       },
-      "post" : {
-        "tags" : [ "Anecdotes" ],
-        "summary" : "Create an Anecdote",
-        "description" : "Adds an Anecdote",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Anecdote"
+      "post": {
+        "tags": [
+          "Anecdotes"
+        ],
+        "summary": "Create an Anecdote",
+        "description": "Adds an Anecdote",
+        "consumes": [],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Anecdote"
           }
-        } ],
-        "responses" : {
-          "201" : {
-            "description" : "Anecdote has been created under given location.",
-            "headers" : {
-              "Location" : {
-                "type" : "string",
-                "description" : "Location of created Anecdote",
-                "x-example" : "{server}/anecdotes/{id}"
+        }],
+        "responses": {
+          "201": {
+            "description": "Anecdote has been created under given location.",
+            "headers": {
+              "Location": {
+                "type": "string",
+                "description": "Location of created Anecdote",
+                "x-example": "{server}/anecdotes/{id}"
               }
             }
           },
-          "400" : {
-            "description" : "Request doesn't match the API Contract"
+          "400": {
+            "description": "Request doesn't match the API Contract"
           },
-          "401" : {
-            "description" : "You need to be authentified"
+          "401": {
+            "description": "You need to be authentified"
           },
-          "404" : {
-            "description" : "One of the id you request cannot be found. Please check your request body."
+          "404": {
+            "description": "One of the id you request cannot be found. Please check your request body."
           },
-          "500" : {
-            "description" : "Something happened"
+          "500": {
+            "description": "Something happened"
           }
         }
       }
     },
-    "/anecdotes/{anecdoteid}" : {
-      "get" : {
-        "tags" : [ "Anecdotes" ],
-        "summary" : "Load an individual Anecdote",
-        "description" : "Loads an Anecdote",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Anecdote"
+    "/anecdotes/{anecdoteid}": {
+      "get": {
+        "tags": [
+          "Anecdotes"
+        ],
+        "summary": "Load an individual Anecdote",
+        "description": "Loads an Anecdote",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "$ref": "#/definitions/Anecdote"
             },
-            "examples" : {
-              "application/json" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+            "examples": {
+              "application/json": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
             }
           },
-          "400" : {
-            "description" : "Status 400",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
+          "400": {
+            "description": "Status 400",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
       },
-      "put" : {
-        "tags" : [ "Anecdotes" ],
-        "summary" : "Update an Anecdote",
-        "description" : "Stores an Anecdote",
-        "consumes" : [ ],
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Anecdote"
+      "put": {
+        "tags": [
+          "Anecdotes"
+        ],
+        "summary": "Update an Anecdote",
+        "description": "Stores an Anecdote",
+        "consumes": [],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Anecdote"
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Anecdote"
+        }],
+        "responses": {
+          "200": {
+            "description": "Status 200",
+            "schema": {
+              "$ref": "#/definitions/Anecdote"
             },
-            "examples" : {
-              "application/json" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+            "examples": {
+              "application/json": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
             }
           }
         }
       },
-      "delete" : {
-        "tags" : [ "Anecdotes" ],
-        "summary" : "Delete an Anecdote",
-        "description" : "Deletes an Anecdote",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "Status 200"
+      "delete": {
+        "tags": [
+          "Anecdotes"
+        ],
+        "summary": "Delete an Anecdote",
+        "description": "Deletes an Anecdote",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Status 200"
           }
         }
       },
-      "parameters" : [ {
-        "name" : "anecdoteid",
-        "in" : "path",
-        "required" : true,
-        "type" : "string",
-        "description" : "Identifier of the Anecdote",
-        "x-example" : "0e8dd830-ad98-11e6-bf2e-47644ada7c0f"
-      } ]
+      "parameters": [{
+        "name": "anecdoteid",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Identifier of the Anecdote",
+        "x-example": "0e8dd830-ad98-11e6-bf2e-47644ada7c0f"
+      }]
     }
   },
-  "securityDefinitions" : {
-    "HTTP_BASIC" : {
-      "description" : "All GET methods are public, meaning that *you can read all the data*. Write operations require authentication and therefore are forbidden to the general public.",
-      "type" : "basic"
+  "securityDefinitions": {
+    "HTTP_BASIC": {
+      "description": "All GET methods are public, meaning that *you can read all the data*. Write operations require authentication and therefore are forbidden to the general public.",
+      "type": "basic"
     }
   },
-  "definitions" : {
-    "Error" : {
-      "type" : "object",
-      "required" : [ "code" ],
-      "properties" : {
-        "code" : {
-          "type" : "integer",
-          "minimum" : 400,
-          "maximum" : 599
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "minimum": 400,
+          "maximum": 599
         },
-        "description" : {
-          "type" : "string",
-          "example" : "Bad query parameter [$size]: Invalid integer value [abc]"
+        "description": {
+          "type": "string",
+          "example": "Bad query parameter [$size]: Invalid integer value [abc]"
         },
-        "reasonPhrase" : {
-          "type" : "string",
-          "example" : "Bad Request"
+        "reasonPhrase": {
+          "type": "string",
+          "example": "Bad Request"
         }
       },
-      "description" : "This general error structure is used throughout this API.",
-      "example" : "{\n  \"code\": 400,\n  \"description\": \"Bad query parameter [$size]: Invalid integer value [abc]\",\n  \"reasonPhrase\": \"Bad Request\"\n}"
+      "description": "This general error structure is used throughout this API.",
+      "example": "{\n  \"code\": 400,\n  \"description\": \"Bad query parameter [$size]: Invalid integer value [abc]\",\n  \"reasonPhrase\": \"Bad Request\"\n}"
     },
-    "User" : {
-      "type" : "object",
-      "required" : [ "firstName", "id", "lastName" ],
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "description" : "Auto-generated primary key field",
-          "example" : "0e8ffb10-ad98-11e6-bf2e-47644ada7c0f"
+    "User": {
+      "type": "object",
+      "required": [
+        "email",
+        "firstName",
+        "id",
+        "lastName"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Auto-generated primary key field",
+          "example": "0e8ffb10-ad98-11e6-bf2e-47644ada7c0f"
         },
-        "firstName" : {
-          "type" : "string",
-          "example" : "Kurt"
+        "firstName": {
+          "type": "string",
+          "example": "Kurt"
         },
-        "lastName" : {
-          "type" : "string",
-          "example" : "Williams"
+        "lastName": {
+          "type": "string",
+          "example": "Williams"
         },
-        "birthday" : {
-          "type" : "integer",
-          "format" : "int64",
-          "description" : "Birthday as unix timestamp (in ms)",
-          "example" : 173664000000
+        "email": {
+          "type": "string",
+          "description": "User email"
+        },
+        "birthday": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Birthday as unix timestamp (in ms)",
+          "example": 173664000000
         }
       },
-      "description" : "A representation of a User.",
-      "example" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}"
+      "description": "A representation of a User.",
+      "example": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"john.smith@gmail.com\"\n  \"birthday\": 152755200000\n}"
     },
-    "Anecdote" : {
-      "type" : "object",
-      "required" : [ "author", "id", "message", "title" ],
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "description" : "Auto-generated primary key field",
-          "example" : "0e8ffb10-ad98-11e6-bf2e-47644ada7c0f"
+    "Anecdote": {
+      "type": "object",
+      "required": [
+        "author",
+        "id",
+        "message",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Auto-generated primary key field",
+          "example": "0e8ffb10-ad98-11e6-bf2e-47644ada7c0f"
         },
-        "title" : {
-          "type" : "string",
-          "description" : "Title describing the Anecdote",
-          "minLength" : 1,
-          "maxLength" : 140,
-          "example" : "About yesterday evening ..."
+        "title": {
+          "type": "string",
+          "description": "Title describing the Anecdote",
+          "minLength": 1,
+          "maxLength": 140,
+          "example": "About yesterday evening ..."
         },
-        "message" : {
-          "type" : "string",
-          "description" : "Anecdote message. Express yourself.",
-          "minLength" : 1,
-          "maxLength" : 500,
-          "example" : "As Fluffy (his cat) ran into his legs, Johny fell down on the floor, with all the glasses he was carrying to the living room!"
+        "message": {
+          "type": "string",
+          "description": "Anecdote message. Express yourself.",
+          "minLength": 1,
+          "maxLength": 500,
+          "example": "As Fluffy (his cat) ran into his legs, Johny fell down on the floor, with all the glasses he was carrying to the living room!"
         },
-        "author" : {
-          "type" : "integer",
-          "description" : "Author of the Anecdote. Must be a known User"
+        "author": {
+          "type": "integer",
+          "description": "Author of the Anecdote. Must be a known User"
         },
-        "tags" : {
-          "type" : "array",
-          "description" : "Tags (i.e. #hashtags) to help archiving of the anecdote.",
-          "items" : {
-            "type" : "string"
+        "tags": {
+          "type": "array",
+          "description": "Tags (i.e. #hashtags) to help archiving of the anecdote.",
+          "items": {
+            "type": "string"
           },
-          "example" : "[\n  \"funny\",\n  \"judo\",\n  \"barbecue\"\n]"
+          "example": "[\n  \"funny\",\n  \"judo\",\n  \"barbecue\"\n]"
         },
-        "happenedOn" : {
-          "type" : "integer",
-          "format" : "int64",
-          "description" : "Datetime (as unix timestamp (in ms)) of when the described anecdote happened.",
-          "example" : 173664000000
+        "happenedOn": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Datetime (as unix timestamp (in ms)) of when the described anecdote happened.",
+          "example": 173664000000
         },
-        "actors" : {
-          "type" : "array",
-          "description" : "Users associated to the Anecdote.",
-          "items" : {
-            "type" : "string"
+        "actors": {
+          "type": "array",
+          "description": "Users associated to the Anecdote.",
+          "items": {
+            "type": "string"
           }
         }
       },
-      "description" : "A representation of an Anecdote.",
-      "example" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+      "description": "A representation of an Anecdote.",
+      "example": "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
     }
   }
 }

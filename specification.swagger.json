@@ -126,13 +126,14 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/User"
-            },
-            "examples" : {
-              "application/json" : "[{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"birthday\": 152755200000\n}]"
+          "201" : {
+            "description" : "User has been created under given location.",
+            "headers" : {
+              "Location" : {
+                "type" : "string",
+                "description" : "Location of the created User",
+                "x-example" : "{server}/users/{id}"
+              }
             }
           }
         }
@@ -312,13 +313,14 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Status 200",
-            "schema" : {
-              "$ref" : "#/definitions/Anecdote"
-            },
-            "examples" : {
-              "application/json" : "{\n  \"id\": \"0e8dd830-ad98-11e6-bf2e-47644ada7c0f\",\n  \"title\": \"About yesterday evening ...\",\n  \"message\": \"John drank too much, and he kissed his cat, which is very funny.\",\n  \"author\": \"éijeZE-ad98-11e6-bf2e-47623457c0f\"\n  \"tags\": [\n    \"party\",\n    \"funny\",\n    \"cats\"\n  ],\n  \"happenedOn\": 152755200000,\n  \"actors\": [\n    \"245dfg-tgr465-546gffg\",\n    \"zefezg35-34546-rgf\"\n  ]\n}"
+          "201" : {
+            "description" : "Anecdote has been created under given location.",
+            "headers" : {
+              "Location" : {
+                "type" : "string",
+                "description" : "Location of created Anecdote",
+                "x-example" : "{server}/anecdotes/{id}"
+              }
             }
           },
           "400" : {

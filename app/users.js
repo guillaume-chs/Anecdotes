@@ -20,40 +20,46 @@ module.exports = function(server) {
     server.route({
         method: 'POST',
         path: '/users',
-        // TODO : check if we can validate request body
-        // config: {
-        //     validate: {
-        //         params: {
-        //             id: Joi.number().min(0),
-        //             option: Joi.string().required().valid('on', 'off')
-        //         }
-        //     }
-        // },
+        config: {
+            validate: {
+                payload: {
+                    firstName: Joi.string().required().min(1),
+                    lastName: Joi.string().required().min(1),
+                    email: Joi.string().required().email(),
+                    birthday: Joi.number().required()
+                }
+            }
+        },
         handler: (request, reply) => {
             // 1: client authenticated      401
+            // Let's say it's okay
+
             // 2: request valid             400 Bad Request
+            // Trust in Joi
 
             // 3: Already exists ?          403
-            // 4: Users exist ?             404
 
             // 5: CREATED                   201 + Location
-
-
-
-            // if (!ready) {
-            //     reply('Not initialized').code(405); // Not Allowed
-
-            // } else if (!arduino.ledExists(request.params.id)) {
-            //     reply('Not found').code(404); // Not Found
-
-            // } else {
-            //     if ((on && status) || (off && !status)) {
-            //         reply('Already ' + request.params.option).code(304); // Not Modified
-            //     } else {
-            //         reply().code(204); // No Content
-            //     }
-            // }
+            var user = request.payload;
+            user["id"] = parseInt(users[users.length - 1].id) + 1;
+            users.push(user);
+            reply().code(201).header('Location', '/users/' + user.id);
         }
     });
 
+    
+    server.route({
+        method: 'GET',
+        path: '/users/{id}',
+        config: {
+            validate: {
+                params: {
+                    id: Joi.string().required().min(1)
+                }
+            }
+        },
+        handler: (request, reply) => {
+            reply(users[request.params.id]);
+        }
+    });
 };

@@ -4,68 +4,33 @@ const Hapi = require('hapi');
 const Good = require('good');
 const Joi = require('joi');
 
+// const Bcrypt = require('bcrypt');
+// const Basic = require('hapi-auth-basic');
+
+
+
+// const validate = function (request, username, password, callback) {
+//     const user = users[username];
+//     if (!user) {
+//         return callback(null, false);
+//     }
+
+//     Bcrypt.compare(password, user.password, (err, isValid) => {
+//         callback(err, isValid, { id: user.id, name: user.name });
+//     });
+// };
+
+
+
 
 // Create a server with a host and port
-const server = new Hapi.Server();
+const server = new Hapi.Server();   
 server.connection({
     host: 'localhost',
     port: 4304
 });
 
-
-
-/****************************/
-/******* EXEMPLE ************/
-/****************************/
-// server.route({
-//     method: 'POST',
-//     path: '/init',
-//     handler: (request, reply) => {
-//         ready = true;
-//         reply('Initialized').code(201);
-//     }
-// });
-
-// server.route({
-//     method: 'POST',
-//     path: '/led/{id}/actions/switch/{option}',
-//     config: {
-//         validate: {
-//             params: {
-//                 id: Joi.number().min(0),
-//                 option: Joi.string().required().valid('on', 'off')
-//             }
-//         }
-//     },
-//     handler: (request, reply) => {
-//         if (!ready) {
-//             reply('Not initialized').code(405); // Not Allowed
-
-//         } else if (!arduino.ledExists(request.params.id)) {
-//             reply('Not found').code(404); // Not Found
-
-//         } else {
-//             if ((on && status) || (off && !status)) {
-//                 reply('Already ' + request.params.option).code(304); // Not Modified
-//             } else {
-//                 reply().code(204); // No Content
-//             }
-//         }
-//     }
-// });
-
-require('./app/users.js')(server);
-require('./app/anecdotes.js')(server);
-
-
-
-
-
-
-
-
-// Start the server
-server.register({
+server.register([/*Basic,*/ {
     register: Good,
     options: {
         reporters: {
@@ -81,8 +46,14 @@ server.register({
             }, 'stdout']
         }
     }
-}, (err) => {
-    if (err) throw err;
+}], (err) => {
+    if (err)throw err;
+
+    // server.auth.strategy('simple', 'basic', { validateFunc: validate });
+
+    require('./app/users.js')(server);
+    require('./app/anecdotes.js')(server);
+
     server.start((err) => {
         if (err) throw err;
         server.log('info', 'Server running at: ' + server.info.uri);

@@ -5,7 +5,7 @@ const anecdotes = require('../data/anecdotes.json');
 const users = require('../data/users.json');
 
 function getAnecdote(id) {
-    return anecdotes.find(a => a.id === id);
+    return anecdotes.find(a => a.id == id);
 }
 
 function getUser(id) {
@@ -32,7 +32,7 @@ module.exports = function(server) {
         handler: (request, reply) => {
             const id = encodeURIComponent(request.params.anecdoteid);
             const anecdote = getAnecdote(id);
-            if (anecdote === undefined) {
+            if (!anecdote) {
                 reply("This anecdote was not found").code(404);
             } else {
                 reply(anecdote);
@@ -58,8 +58,7 @@ module.exports = function(server) {
         handler: (request, reply) => {
             const anecdote = request.payload;
             const author = getUser(parseInt(anecdote.author));
-            console.log(author);
-            if (author === undefined) {
+            if (!author) {
                 reply("The author don't exists").code(404);
             } else if (!checkAllActors(anecdote.actors)) {
                 reply("At least one of actors don't exists").code(404);

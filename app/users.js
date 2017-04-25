@@ -41,7 +41,7 @@ module.exports = function(server) {
             var user = request.payload;
             user["id"] = parseInt(users[users.length - 1].id) + 1;
             users.push(user);
-            reply().code(201).header('Location', '/users/' + user.id);
+            reply().code(201).header('Location', `/users/{user.id}`);
         }
     });
     

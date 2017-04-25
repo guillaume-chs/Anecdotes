@@ -66,7 +66,7 @@ module.exports = function(server) {
             } else {
                 anecdote.id = anecdotes.length + 1;
                 anecdotes.push(anecdote);
-                reply(`/anecdotes/${anecdote.id}`).code(201);
+                reply().code(201).header('Location', `/anecdotes/${anecdote.id}`);
             }
         }
     })

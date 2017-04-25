@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "firstname": "Damien",
+    "lastname": "Renaud",
+    "email": "damien.renaud@gmail.com",
+    "birthday": "798793939"
+  },
+  {
+    "id": "2",
+    "firstname": "Guillaume",
+    "lastname": "Chanson",
+    "email": "guillaume.chanson@gmail.com",
+    "birthday": "798793939"
+  },
+  {
+    "id": "3",
+    "firstname": "Steeve",
+    "lastname": "Sinigaglia de Malibran",
+    "email": "steeve.sinigaglia@gmail.com",
+    "birthday": "798793939"
+  }
+]
